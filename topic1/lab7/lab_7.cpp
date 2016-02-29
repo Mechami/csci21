@@ -7,29 +7,24 @@
 
 #include "lab_7.h"
 
-// Declare our includes and namespaces here since we aren't
-// allowed to modify the header file
-#include <functional>
-using std::function;
-
-// Map each function to the string that is supposed to represent it
-const map<string, function<void()>  > function_map {
-  { "10", OnTen },
-  { "20", OnTwenty },
-  { "30", OnThirty },
-  { "40", OnForty },
-  { "50", OnFifty },
-};
-
 bool ProcessFile(string filename)
 {
+  // Map each function to the string that is supposed to represent it
+  // We use "void (*)()" to specify a function pointer for the map
+  map<string, void (*)()> function_map;
+  function_map["10"] = OnTen;
+  function_map["20"] = OnTwenty;
+  function_map["30"] = OnThirty;
+  function_map["40"] = OnForty;
+  function_map["50"] = OnFifty;
+
   // Make sure we actually have a filename before attempting to open said file
   bool error = filename.empty();
   ifstream fin;
 
   // If we have a valid descriptor then open the file
   if (!error) {
-    fin.open(filename);
+    fin.open(filename.c_str());
   }
 
   // Declare and initialize our string here so
@@ -56,6 +51,15 @@ bool ProcessFile(string filename)
 }
 
 void ProcessArguments(int argc, char* argv[]) {
+  // Map each function to the string that is supposed to represent it
+  // We use "void (*)()" to specify a function pointer for the map
+  map<string, void (*)()> function_map;
+  function_map["10"] = OnTen;
+  function_map["20"] = OnTwenty;
+  function_map["30"] = OnThirty;
+  function_map["40"] = OnForty;
+  function_map["50"] = OnFifty;
+
   // Create a C-String representing the current argument here
   const char* arg = "";
 
