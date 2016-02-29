@@ -8,6 +8,9 @@
 #include <cstdlib>
 #include "lab_6.h"
 
+// Declare to_string here since we're not supposed to modify the header
+string to_string(int x);
+
 string PrepareForDisplay(int values[], int size, char separator) {
   // Declare our output string
   string output = "";
@@ -18,14 +21,13 @@ string PrepareForDisplay(int values[], int size, char separator) {
   // Then append it to the output string
   for (int index = 0; index < absize; index++) {
     // Convert the value to a string before attempting to concatinate it
-    // to_string requires C++11 however
-    output += std::to_string(values[index]);
+    output += to_string(values[index]);
     output += separator;
   }
 
   // Remove the last character since the above loop will always gaurantee the
   // last character will be a seperator
-  output.pop_back();
+  output.resize(output.size() - 1);
 
   return output;
 }
@@ -86,4 +88,15 @@ bool SwapValues(int values[], int size, int index1, int index2) {
   }
 
   return !error;
+}
+
+string to_string(int x)
+{
+    // Create a string stream to handle the conversion
+    stringstream ss;
+    // Actually do the conversion
+    ss << x;
+
+    // Return the converted int as an actual string
+    return ss.str();
 }
