@@ -5,7 +5,7 @@ using std::ostringstream;
 
 /*
  * Function Name: Sum
- * Return the "sum" of the values in the array. Your initial sum 	should be set
+ * Return the "sum" of the values in the array. Your initial sum should be set
  * to "zero" in your algorithm. To do this use T().
  * @param T values - An array of any type
  * @param unsigned int size - The size of the array
